@@ -1,0 +1,24 @@
+project:
+  name: 'CS169-fa23-41'
+  owner: 'fa23'
+  teamId: '41'
+  identities: {}
+  notifications:
+    email: 'jeeyookim@berkeley.edu'
+  members:
+    member1:
+      name: 'Jeeyoo'
+      surname: 'Kim' 
+      githubUsername: 'jeeyookim'
+    member2:
+      name: 'Seongjin'
+      surname: 'Chang' 
+      githubUsername: 'seongjinbrian'
+    member3:
+      name: 'Victor'
+      surname: 'Shen' 
+      githubUsername: 'victor4shen'
+    member4:
+      name: 'Jonathan'
+      surname: 'Garcia' 
+      githubUsername: 'Jcgarcia02'
