@@ -17,9 +17,8 @@ class Representative < ApplicationRecord
         end
       end
 
-      if !Representative.exists?(name: 'John Doe', ocdid: 'ocd-division/country:us/state:ca/place:example_city')
-        rep = Representative.create!({ name: official.name, ocdid: ocdid_temp,
-            title: title_temp })
+      unless Representative.exists?(name: official.name, ocdid: ocdid_temp)
+        rep = Representative.create!({ name: official.name, ocdid: ocdid_temp, title: title_temp })
         reps.push(rep)
       end
     end
