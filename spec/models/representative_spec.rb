@@ -3,25 +3,27 @@
 require 'rails_helper'
 require 'spec_helper'
 
+# rubocop:disable RSpec/VerifiedDoubles, Rspec/MessageSpies, RSpec/ExampleLength, Layout/LineLength
+
 describe Representative do
   describe 'civic api to representative params' do
     before do
-      # Assuming CivicInfoResult is the expected type of the result object
-      @civic_info_result_double = instance_double(Google::Apis::CivicinfoV2::CivicInfoResult)
+      @rep_info = double('rep_info')
+      @existing_rep = described_class.create!(name: 'Chris Traeger',
+                                              ocdid: 'ocd-division/country:us/state:ca/place:example_city', title: 'Clerk')
     end
 
     it 'creates representatives from rep_info' do
-      # Now you can set up expectations or stub methods on civic_info_result_double as needed
-      allow(@civic_info_result_double).to receive(:officials).and_return([
-        instance_double(Google::Apis::CivicinfoV2::Official, name: 'John Doe'),
-        instance_double(Google::Apis::CivicinfoV2::Official, name: 'Jane Smith')
-      ])
+      allow(@rep_info).to receive(:officials).and_return([
+                                                           double('official1', name: 'John Doe'),
+                                                           double('official2', name: 'Jane Smith')
+                                                         ])
 
-      allow(@civic_info_result_double).to receive(:offices).and_return([
-                                                         instance_double(Office, name: 'Mayor', official_indices: [0],
+      allow(@rep_info).to receive(:offices).and_return([
+                                                         double('office1', name: 'Mayor', official_indices: [0],
 division_id: 'ocd-division/country:us/state:ca/place:example_city'),
-                                                         instance_double(Office, name: 'Governor', official_indices: [1],
-                                                 division_id: 'ocd-division/country:us/state:ca')
+                                                         double('office2', name: 'Governor', official_indices: [1],
+division_id: 'ocd-division/country:us/state:ca')
                                                        ])
 
       expect(described_class).to receive(:create!).with({ name: 'John Doe',
@@ -29,7 +31,25 @@ ocdid: 'ocd-division/country:us/state:ca/place:example_city', title: 'Mayor' })
       expect(described_class).to receive(:create!).with({ name: 'Jane Smith', ocdid: 'ocd-division/country:us/state:ca',
 title: 'Governor' })
 
-      described_class.civic_api_to_representative_params(@civic_info_result_double)
+      described_class.civic_api_to_representative_params(@rep_info)
+    end
+
+    it 'doesnt duplicate representatives' do
+      allow(@rep_info).to receive(:officials).and_return([
+                                                           double('official1', name: 'Chris Traeger')
+                                                         ])
+
+      allow(@rep_info).to receive(:offices).and_return([
+                                                         double('office1', name: 'Clerk', official_indices: [0],
+division_id: 'ocd-division/country:us/state:ca/place:example_city')
+                                                       ])
+
+      expect(@existing_rep).not_to receive(:update!)
+      expect(described_class).not_to receive(:create!)
+
+      described_class.civic_api_to_representative_params(@rep_info)
     end
   end
 end
+
+# rubocop:enable RSpec/VerifiedDoubles, Rspec/MessageSpies, RSpec/ExampleLength, Layout/LineLength
