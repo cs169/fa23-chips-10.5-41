@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'spec_helper'
 
-# rubocop:disable RSpec/VerifiedDoubles, Rspec/MessageSpies, RSpec/ExampleLength, Layout/LineLength
+# rubocop:disable RSpec/VerifiedDoubles, Rspec/MessageSpies, RSpec/ExampleLength, Layout/LineLength,
 
 describe Representative do
   it 'is valid with valid attributes' do
