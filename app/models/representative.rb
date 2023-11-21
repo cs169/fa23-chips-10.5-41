@@ -32,32 +32,32 @@ class Representative < ApplicationRecord
       end
       political_party = official.party if official.party
       profile = official.photoUrl if official.respond_to?(:photoUrl) && official.photoUrl
-            
+
       # Check if a representative with the same name and ocdid already exists
       existing_rep = Representative.find_by(name: official.name, ocdid: ocdid_temp)
       if existing_rep
         existing_rep.update!(
-          title: title_temp,
-          street: street,
-          city: city,
-          state: state,
-          zip: zip,
+          title:           title_temp,
+          street:          street,
+          city:            city,
+          state:           state,
+          zip:             zip,
           political_party: political_party,
-          profile: profile
+          profile:         profile
         )
         reps.push(existing_rep)
       else
         rep = Representative.create!({
-                                      name: official.name,
-                                      ocdid: ocdid_temp,
-                                      title: title_temp,
-                                      street: street,
-                                      city: city,
-                                      state: state,
-                                      zip: zip,
-                                      political_party: political_party,
-                                      profile: profile
-                                    })
+                                       name:            official.name,
+                                       ocdid:           ocdid_temp,
+                                       title:           title_temp,
+                                       street:          street,
+                                       city:            city,
+                                       state:           state,
+                                       zip:             zip,
+                                       political_party: political_party,
+                                       profile:         profile
+                                     })
         reps.push(rep)
       end
     end
