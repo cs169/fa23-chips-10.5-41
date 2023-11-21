@@ -29,22 +29,22 @@ class Representative < ApplicationRecord
         state = address.state
         zip = address.zip
       end
-      party = official.political_party if official.political_party
+      political_party = official.political_party if official.political_party
       profile = official.profile if official.profile
-      unless Representative.exists?(name: official.name, ocdid: ocdid_temp)
-        rep = Representative.create!({ 
-          name: official.name, 
-          ocdid: ocdid_temp,
-          title: title_temp,
-          street:    street,
-          city:      city,
-          state:     state,
-          zip:       zip,
-          political_party:     political_party,
-          profile: profile 
-        })
-        reps.push(rep)
-      end
+      next if Representative.exists?(name: official.name, ocdid: ocdid_temp)
+
+      rep = Representative.create!({
+                                     name:            official.name,
+                                     ocdid:           ocdid_temp,
+                                     title:           title_temp,
+                                     street:          street,
+                                     city:            city,
+                                     state:           state,
+                                     zip:             zip,
+                                     political_party: political_party,
+                                     profile:         profile
+                                   })
+      reps.push(rep)
     end
 
     reps
