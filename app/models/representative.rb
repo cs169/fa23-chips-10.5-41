@@ -31,7 +31,7 @@ class Representative < ApplicationRecord
         zip = address.zip
       end
       political_party = official.party if official.party
-      profile = official.photoUrl if official.photoUrl
+      profile = official.photo_url if official.respond_to?(:photo_url) && official.photo_url
       next if Representative.exists?(name: official.name, ocdid: ocdid_temp)
 
       rep = Representative.create!({
