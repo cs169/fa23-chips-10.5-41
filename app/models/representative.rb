@@ -51,6 +51,7 @@ class Representative < ApplicationRecord
                                     })
         reps.push(rep)
       end
+    end
     reps
   end
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/BlockLength, Metrics/CyclomaticComplexity, Metric/PerceivedComplexity
