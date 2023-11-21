@@ -16,7 +16,6 @@ describe Representative do
       state:           'CA',
       zip:             '12345',
       political_party: 'Independent',
-      profile:         'A brief profile...'
     )
     expect(representative).to be_valid
   end
@@ -30,8 +29,8 @@ describe Representative do
 
     it 'creates representatives from rep_info' do
       allow(@rep_info).to receive(:officials).and_return([
-                                                           double('official1', name: 'John Doe', address: nil, party: nil, profile: nil),
-                                                           double('official2', name: 'Jane Smith', address: nil, party: nil, profile: nil)
+                                                           double('official1', name: 'John Doe', address: nil, party: nil),
+                                                           double('official2', name: 'Jane Smith', address: nil, party: nil)
                                                          ])
 
       allow(@rep_info).to receive(:offices).and_return([
@@ -49,8 +48,7 @@ division_id: 'ocd-division/country:us/state:ca')
                                                           city:            '',
                                                           state:           '',
                                                           zip:             '',
-                                                          political_party: '',
-                                                          profile:         ''
+                                                          political_party: ''
                                                         })
       expect(described_class).to receive(:create!).with({
                                                           name:            'Jane Smith',
@@ -60,8 +58,7 @@ division_id: 'ocd-division/country:us/state:ca')
                                                           city:            '',
                                                           state:           '',
                                                           zip:             '',
-                                                          political_party: '',
-                                                          profile:         ''
+                                                          political_party: ''
                                                         })
 
       described_class.civic_api_to_representative_params(@rep_info)
@@ -69,7 +66,7 @@ division_id: 'ocd-division/country:us/state:ca')
 
     it 'doesnt duplicate representatives' do
       allow(@rep_info).to receive(:officials).and_return([
-                                                           double('official1', name: 'Chris Traeger', address: nil, party: nil, profile: nil)
+                                                           double('official1', name: 'Chris Traeger', address: nil, party: nil)
                                                          ])
 
       allow(@rep_info).to receive(:offices).and_return([
