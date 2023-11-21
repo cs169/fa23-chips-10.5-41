@@ -3,7 +3,7 @@
 class Representative < ApplicationRecord
   has_many :news_items, dependent: :delete_all
 
-  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/BlockLength, Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/BlockLength, Metrics/CyclomaticComplexity, Metric/PerceivedComplexity
   def self.civic_api_to_representative_params(rep_info)
     reps = []
 
@@ -31,7 +31,7 @@ class Representative < ApplicationRecord
         zip = address.zip
       end
       political_party = official.party if official.party
-      profile = official.photo_url if official.respond_to?(:photo_url) && official.photo_url
+      profile = official.photoUrl if official.respond_to?(:photoUrl) && official.photoUrl
       next if Representative.exists?(name: official.name, ocdid: ocdid_temp)
 
       rep = Representative.create!({
@@ -49,5 +49,5 @@ class Representative < ApplicationRecord
     end
     reps
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/BlockLength, Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/BlockLength, Metrics/CyclomaticComplexity, Metric/PerceivedComplexity
 end
