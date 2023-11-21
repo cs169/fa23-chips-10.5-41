@@ -1,0 +1,19 @@
+<main role="main" class="container my-5">
+  <section class="highlight">
+    <div class="row">    
+      <div class="col-4">
+        <img class="img-fluid img-thumbnail" src="<%= @representative.profile.blank? ? 'https://www.gravatar.com/avatar/?d=mp' : @representative.profile %>" alt="Profile">
+      </div>
+      <div class="col-8">
+        <h1 class="name-title"><%= @representative.name %></h1>
+        <h2 class="role-info text-muted"><%= @representative.title %></h2>
+        <h3 class="id-info text-muted"><%= @representative.ocdid %></h3>
+        <hr>
+        <div class="representative-details">
+          <p class="detail-item"><strong>Political Party:</strong> <%= @representative.political_party %></p>
+          <p class="detail-item"><strong>Address:</strong> <%= @representative.street %>, <%= @representative.city %>, <%= @representative.state %>, <%= @representative.zip %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

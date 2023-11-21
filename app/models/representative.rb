@@ -3,12 +3,19 @@
 class Representative < ApplicationRecord
   has_many :news_items, dependent: :delete_all
 
+  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/BlockLength
   def self.civic_api_to_representative_params(rep_info)
     reps = []
 
     rep_info.officials.each_with_index do |official, index|
       ocdid_temp = ''
       title_temp = ''
+      street = ''
+      city = ''
+      state = ''
+      zip = ''
+      political_party = ''
+      profile = ''
 
       rep_info.offices.each do |office|
         if office.official_indices.include? index
@@ -16,13 +23,31 @@ class Representative < ApplicationRecord
           ocdid_temp = office.division_id
         end
       end
-
-      unless Representative.exists?(name: official.name, ocdid: ocdid_temp)
-        rep = Representative.create!({ name: official.name, ocdid: ocdid_temp, title: title_temp })
-        reps.push(rep)
+      if official.address
+        address = official.address[0]
+        street = address.line1
+        city = address.city
+        state = address.state
+        zip = address.zip
       end
-    end
+      political_party = official.political_party if official.political_party
+      profile = official.profile if official.profile
+      next if Representative.exists?(name: official.name, ocdid: ocdid_temp)
 
+      rep = Representative.create!({
+                                     name:            official.name,
+                                     ocdid:           ocdid_temp,
+                                     title:           title_temp,
+                                     street:          street,
+                                     city:            city,
+                                     state:           state,
+                                     zip:             zip,
+                                     political_party: political_party,
+                                     profile:         profile
+                                   })
+      reps.push(rep)
+    end
     reps
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/BlockLength
 end
