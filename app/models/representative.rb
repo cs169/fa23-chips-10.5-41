@@ -30,7 +30,7 @@ class Representative < ApplicationRecord
         state = address.state
         zip = address.zip
       end
-      political_party = official.political_party if official.political_party
+      political_party = official.party if official.party
       profile = official.profile if official.profile
       next if Representative.exists?(name: official.name, ocdid: ocdid_temp)
 
