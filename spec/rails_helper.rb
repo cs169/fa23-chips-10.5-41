@@ -5,9 +5,6 @@
 require 'simplecov'
 SimpleCov.start 'rails'
 
-require 'google/apis'
-require 'google/apis/civicinfo_v2'
-
 if ENV['CI']
   require 'codecov'
   SimpleCov.formatter = SimpleCov::Formatter::Codecov
