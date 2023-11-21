@@ -15,7 +15,7 @@ describe Representative do
       city:            'Anytown',
       state:           'CA',
       zip:             '12345',
-      political_party: 'Independent',
+      political_party: 'Independent'
     )
     expect(representative).to be_valid
   end

@@ -3,7 +3,7 @@
 class Representative < ApplicationRecord
   has_many :news_items, dependent: :delete_all
 
-  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/BlockLength
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/BlockLength
   def self.civic_api_to_representative_params(rep_info)
     reps = []
 
@@ -40,11 +40,11 @@ class Representative < ApplicationRecord
                                      city:            city,
                                      state:           state,
                                      zip:             zip,
-                                     political_party: political_party,
+                                     political_party: political_party
                                    })
       reps.push(rep)
     end
     reps
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/BlockLength
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/BlockLength
 end
