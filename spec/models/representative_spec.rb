@@ -31,8 +31,8 @@ describe Representative do
 
     it 'creates representatives from rep_info' do
       allow(@rep_info).to receive(:officials).and_return([
-                                                           double('official1', name: 'John Doe'),
-                                                           double('official2', name: 'Jane Smith')
+                                                           double('official1', name: 'John Doe', address: nil, political_party: nil, profile: nil),
+                                                           double('official2', name: 'Jane Smith', address: nil, political_party: nil, profile: nil)
                                                          ])
 
       allow(@rep_info).to receive(:offices).and_return([
@@ -42,17 +42,35 @@ division_id: 'ocd-division/country:us/state:ca/place:example_city'),
 division_id: 'ocd-division/country:us/state:ca')
                                                        ])
 
-      expect(described_class).to receive(:create!).with({ name: 'John Doe',
-ocdid: 'ocd-division/country:us/state:ca/place:example_city', title: 'Mayor' })
-      expect(described_class).to receive(:create!).with({ name: 'Jane Smith', ocdid: 'ocd-division/country:us/state:ca',
-title: 'Governor' })
+      expect(described_class).to receive(:create!).with({ 
+          name: 'John Doe',
+          ocdid: 'ocd-division/country:us/state:ca/place:example_city', 
+          title: 'Mayor',
+          street: '',
+          city: '',
+          state: '',
+          zip: '',
+          political_party: '',
+          profile: ''
+       })
+      expect(described_class).to receive(:create!).with({ 
+          name: 'Jane Smith', 
+          ocdid: 'ocd-division/country:us/state:ca',
+          title: 'Governor',
+          street: '',
+          city: '',
+          state: '',
+          zip: '',
+          political_party: '',
+          profile: ''
+        })
 
       described_class.civic_api_to_representative_params(@rep_info)
     end
 
     it 'doesnt duplicate representatives' do
       allow(@rep_info).to receive(:officials).and_return([
-                                                           double('official1', name: 'Chris Traeger')
+                                                           double('official1', name: 'Chris Traeger', address: nil, political_party: nil, profile: nil)
                                                          ])
 
       allow(@rep_info).to receive(:offices).and_return([
