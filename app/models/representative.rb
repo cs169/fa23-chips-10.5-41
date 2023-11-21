@@ -32,21 +32,25 @@ class Representative < ApplicationRecord
       end
       political_party = official.party if official.party
       profile = official.photoUrl if official.respond_to?(:photoUrl) && official.photoUrl
-      next if Representative.exists?(name: official.name, ocdid: ocdid_temp)
 
-      rep = Representative.create!({
-                                     name:            official.name,
-                                     ocdid:           ocdid_temp,
-                                     title:           title_temp,
-                                     street:          street,
-                                     city:            city,
-                                     state:           state,
-                                     zip:             zip,
-                                     political_party: political_party,
-                                     profile:         profile
-                                   })
-      reps.push(rep)
-    end
+      # Check if a representative with the same name and ocdid already exists
+      existing_rep = Representative.find_by(name: official.name, ocdid: ocdid_temp)
+      if existing_rep
+        reps.push(existing_rep)
+      else
+        rep = Representative.create!({
+                                      name: official.name,
+                                      ocdid: ocdid_temp,
+                                      title: title_temp,
+                                      street: street,
+                                      city: city,
+                                      state: state,
+                                      zip: zip,
+                                      political_party: political_party,
+                                      profile: profile
+                                    })
+        reps.push(rep)
+      end
     reps
   end
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/BlockLength, Metrics/CyclomaticComplexity, Metric/PerceivedComplexity
