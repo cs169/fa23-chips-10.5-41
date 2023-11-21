@@ -31,18 +31,20 @@ class Representative < ApplicationRecord
       end
       party = official.political_party if official.political_party
       profile = official.profile if official.profile
-      rep = Representative.create!({ 
-        name: official.name, 
-        ocdid: ocdid_temp,
-        title: title_temp,
-        street:    street,
-        city:      city,
-        state:     state,
-        zip:       zip,
-        political_party:     political_party,
-        profile: profile 
-      })
-      reps.push(rep)
+      unless Representative.exists?(name: official.name, ocdid: ocdid_temp)
+        rep = Representative.create!({ 
+          name: official.name, 
+          ocdid: ocdid_temp,
+          title: title_temp,
+          street:    street,
+          city:      city,
+          state:     state,
+          zip:       zip,
+          political_party:     political_party,
+          profile: profile 
+        })
+        reps.push(rep)
+      end
     end
 
     reps
