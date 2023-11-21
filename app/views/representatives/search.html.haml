@@ -14,7 +14,8 @@
                             %tr
                                 %td= rep.name
                                 %td= rep.title
-                                %td= link_to representative_path(rep), class: 'btn btn-info' do
+                                %td
+                                    = link_to representative_path(rep), class: 'btn btn-info' do
                                         %i.fas.fa-user
                                         Profile
                                 %td
