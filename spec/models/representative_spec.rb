@@ -30,8 +30,8 @@ describe Representative do
 
     it 'creates representatives from rep_info' do
       allow(@rep_info).to receive(:officials).and_return([
-                                                           double('official1', name: 'John Doe', address: nil, political_party: nil, profile: nil),
-                                                           double('official2', name: 'Jane Smith', address: nil, political_party: nil, profile: nil)
+                                                           double('official1', name: 'John Doe', address: nil, party: nil, profile: nil),
+                                                           double('official2', name: 'Jane Smith', address: nil, party: nil, profile: nil)
                                                          ])
 
       allow(@rep_info).to receive(:offices).and_return([
@@ -69,7 +69,7 @@ division_id: 'ocd-division/country:us/state:ca')
 
     it 'doesnt duplicate representatives' do
       allow(@rep_info).to receive(:officials).and_return([
-                                                           double('official1', name: 'Chris Traeger', address: nil, political_party: nil, profile: nil)
+                                                           double('official1', name: 'Chris Traeger', address: nil, party: nil, profile: nil)
                                                          ])
 
       allow(@rep_info).to receive(:offices).and_return([
