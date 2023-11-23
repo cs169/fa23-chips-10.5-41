@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 When(/^I visit the map page for state (.+)$/) do |state|
   visit "/state/#{state}"
-end 
+end
 
 When(/^I click on county (.+)$/) do |county|
   find_button('Counties in', exact_text: false).click
