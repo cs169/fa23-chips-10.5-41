@@ -4,6 +4,10 @@ When(/^I visit the map page for state (.+)$/) do |state|
   visit "/state/#{state}"
 end
 
+Then(/^I should see the state name (.+)$/) do |state_name|
+  expect(page).to have_content(state_name)
+end
+
 When(/^I click on county (.+)$/) do |county|
   find_button('Counties in', exact_text: false).click
   row = find('table').find('tr', text: county)
