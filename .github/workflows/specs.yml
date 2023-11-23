@@ -35,5 +35,6 @@ jobs:
       - run: yarn install
       - run: bundle exec rake db:setup
       - run: bundle exec rake db:test:prepare
+      - run: RAILS_ENV=test bundle exec rails db:setup db:seed
       - run: bundle exec rspec
       - run: bundle exec cucumber
