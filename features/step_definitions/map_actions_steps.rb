@@ -13,4 +13,3 @@ end
 Then(/^I should see representative (.+)$/) do |representative|
   expect(page).to have_content(representative)
 end
-
