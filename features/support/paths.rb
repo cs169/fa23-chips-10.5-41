@@ -10,7 +10,7 @@ module NavigationHelpers
   #
   # step definition in web_steps.rb
   #
-  def path_to(page_name)
+  def path_to(page_name, state_symbol = nil)
     case page_name
 
     when /^the home\s?page$/

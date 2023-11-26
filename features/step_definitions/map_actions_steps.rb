@@ -14,6 +14,6 @@ Then(/^I should see representative (.+)$/) do |representative|
   expect(page).to have_content(representative)
 end
 
-When /^(?:|I )go to the state map page for (.+)$/ do |state_symbol|
+When /^(?:|I )go visit the state map page for (.+)$/ do |state_symbol|
   visit path_to('the state map page', state_symbol)
 end
