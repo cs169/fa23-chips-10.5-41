@@ -10,7 +10,7 @@ module NavigationHelpers
   #
   # step definition in web_steps.rb
   #
-  def path_to(page_name, state_symbol = nil)
+  def path_to(page_name)
     case page_name
 
     when /^the home\s?page$/
@@ -21,9 +21,6 @@ module NavigationHelpers
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
-    when 'the state map page'
-      state_map_path(state_symbol: state_symbol)
-
     else
       begin
         page_name =~ /^the (.*) page$/
