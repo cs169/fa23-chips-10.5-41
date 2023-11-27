@@ -7,3 +7,7 @@ Background: On the representatives page of a county
   Then I should see "Gavin Newsom"
   When I click on the news button for "Gavin Newsom"
   Then I should see "Listing News Articles for Gavin Newsom"
+
+Scenario: Add news items
+  When I press "Add News Article"
+
