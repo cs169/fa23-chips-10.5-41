@@ -15,7 +15,7 @@ Scenario: Loading one locations representatives twice
   When I fill in "address" with "650 S Main St, Corona, CA 92882"
   And I press "Search"
   Then the table should have 31 rows
-  When I go to the representatives page
+  When I visit url representatives
   And I fill in "address" with "650 S Main St, Corona, CA 92882"
   And I press "Search"
   Then the table should have 31 rows

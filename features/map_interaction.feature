@@ -7,11 +7,32 @@ Scenario: State Click
 Scenario: Visit profile
   When I go to profile "John Smith"
 
+Scenario: Press edit button for news item
+  When I visit url representatives/1/representatives/1/my_news_item/1
+  When I press "Save"
+
+Scenario: Search representative
+  Given I am on the home page
+  When I visit url representatives
+  When I fill in "address" with "California"
+  When I press "Search"
+  When I follow "Gavin Newsom"
+  
+Scenario: Visit news items
+  When I visit url representatives/1/news_items
+  When I press "Edit"
+  When I visit url representatives/1/news_items
+  When I press "Add News Article"
+
+Scenario: Visit news items 2
+  When I visit url representatives/1/representatives/1/my_news_item/new
+  When I visit url representatives/1/news_items/1
+
 Scenario: View representative
   Given I am on the home page
   When I visit url representatives
   When I visit url representatives/1
-  Then I should see "Gavin Newsome"
+  Then I should see "Gavin Newsom"
   When I visit url representatives/1/representatives/1/my_news_item/new
   Then I should see "Edit news article"
 
@@ -34,15 +55,9 @@ Scenario: County search
 
 Scenario: Search Empty address
   Given I am on the home page
-  When I follow "Representatives"
+  When I visit url representatives
   Then I should be on the representatives page
-  When I press "commit"
 
-Scenario: Search Empty address 2
-  Given I am on the home page
-  When I follow "Representatives"
-  When I press "commit"
-  Then I should be on the representatives page
 
 Scenario: Fill in state name
   Given I am on the representatives page
