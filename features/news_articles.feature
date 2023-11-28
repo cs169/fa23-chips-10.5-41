@@ -5,9 +5,9 @@ Background: On the representatives page of a county
   And I am on the representatives page
   When I fill in "address" with "650 S Main St, Corona, CA 92882"
   And I press "Search"
-  Then I should see "Gavin Newsom"
-  When I click on the news button for "Gavin Newsom"
-  Then I should see "Listing News Articles for Gavin Newsom"
+  Then I should see "Ken Calvert"
+  When I click on the news button for "Ken Calvert"
+  Then I should see "Listing News Articles for Ken Calvert"
 
 Scenario: Add news items
   When I click the "Add News Article" link
@@ -15,7 +15,6 @@ Scenario: Add news items
   When I fill in "Title" with "Hannity wants red vs blue"
   And I fill in "Link" with "https://www.politico.com/news/2023/11/27/hannity-desantis-newsom-debate-00128666"
   And I fill in "Description" with "brother wants to debate for real"
-  And I select "Gavin Newsom" from "Representative"
+  And I select "Ken Calvert" from "Representative"
   And I press "Save"
   Then I should see "News item was successfully created."
-
