@@ -25,3 +25,7 @@ Then(/^the table should have (\d+) rows$/) do |expected_rows|
     expect(actual_rows).to eq(expected_rows.to_i)
   end
 end
+
+When /^(?:|I )click the "([^"]*)" link$/ do |link_text|
+  click_link(link_text)
+end

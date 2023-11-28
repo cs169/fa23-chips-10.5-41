@@ -46,3 +46,6 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
+
+# Able to use omniauth in test mode
+OmniAuth.config.test_mode = true
