@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'google/apis/civicinfo_v2'
+require 'net/http'
+require 'json'
 
 class SearchController < ApplicationController
   def search_representatives
@@ -11,5 +13,26 @@ class SearchController < ApplicationController
     @representatives = Representative.civic_api_to_representative_params(result)
 
     render 'representatives/search'
+  end
+
+  def search_campaign_finances
+    cycle = params[:cycle]
+    category = params[:category]
+
+    api_key = Rails.application.credentials[:PROPUBLICA_API_KEY]
+    propublica_url = "https://api.propublica.org/campaign-finance/v1/#{cycle}/#{category}.json"
+    
+    uri = URI(propublica_url)
+    request = Net::HTTP::Get.new(uri)
+    request['X-API-Key'] = api_key
+
+    response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
+      http.request(request)
+    end
+    
+    result = JSON.parse(response.body)
+    @representatives = CampaignFinance.propublica_api_to_representatives(result)
+
+    render 'campaign_finances/search'
   end
 end
