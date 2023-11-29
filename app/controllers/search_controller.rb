@@ -31,7 +31,7 @@ class SearchController < ApplicationController
     end
     
     result = JSON.parse(response.body)
-    @representatives = CampaignFinance.propublica_api_to_representatives(result)
+    @representatives = CampaignFinance.propublica_api_to_representatives(result, category)
 
     render 'campaign_finances/search'
   end
