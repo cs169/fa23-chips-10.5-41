@@ -18,6 +18,7 @@ class SearchController < ApplicationController
   def search_campaign_finances
     cycle = params[:cycle]
     category = params[:category]
+    @category = params[:category]
 
     api_key = Rails.application.credentials[:PROPUBLICA_API_KEY]
     propublica_url = "https://api.propublica.org/campaign-finance/v1/#{cycle}/candidates/leaders/#{category}.json"
@@ -39,6 +40,7 @@ class SearchController < ApplicationController
       flash[:error] = "Error: help"
       @representatives = []
     end
+
     render 'campaign_finances/search'
   end
 end
