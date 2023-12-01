@@ -21,7 +21,7 @@ class SearchController < ApplicationController
 
     api_key = Rails.application.credentials[:PROPUBLICA_API_KEY]
     propublica_url = "https://api.propublica.org/campaign-finance/v1/#{cycle}/candidates/leaders/#{@category}.json"
-    
+
     uri = URI(propublica_url)
     request = Net::HTTP::Get.new(uri)
     request['X-API-Key'] = api_key
@@ -30,13 +30,13 @@ class SearchController < ApplicationController
     http.use_ssl = true if uri.scheme == 'https'
 
     response = http.request(request)
-    
+
     if response.code == '200'
       result = JSON.parse(response.body)
-      puts "API Result: #{result}"
+      Rails.logger.debug { "API Result: #{result}" }
       @representatives = CampaignFinance.propublica_api_to_representatives(result, cycle, @category)
     else
-      flash[:error] = "Error: help"
+      flash[:error] = 'Error: help'
       @representatives = []
     end
 

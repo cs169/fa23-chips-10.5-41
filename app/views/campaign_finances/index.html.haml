@@ -6,14 +6,14 @@
         = form_tag search_campaign_finances_path, method: :get do
             .form-group.row
                 .col-md-4
-                    %label.col-form-label 
+                    %label.col-form-label
                         Enter a cycle:
                 .col-md-6
                     = text_field_tag(:cycle, nil, class: 'form-control')
 
             .form-group.row
                 .col-md-4
-                    %label.col-form-label 
+                    %label.col-form-label
                         Enter a category:
                 .col-md-6
                     = text_field_tag(:category, nil, class: 'form-control')

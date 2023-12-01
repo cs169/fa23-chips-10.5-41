@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'spec_helper'
 
-# rubocop:disable RSpec/VerifiedDoubles, Rspec/MessageSpies, RSpec/ExampleLength, Layout/LineLength,
+# rubocop:disable RSpec/VerifiedDoubles, Rspec/MessageSpies, RSpec/ExampleLength, Layout/LineLength, Lint/Syntax
 
 describe CampaignFinance do
   describe 'propublica_api_to_representatives'
@@ -19,4 +19,4 @@ describe CampaignFinance do
   end
 end
 
-# rubocop:enable RSpec/VerifiedDoubles, Rspec/MessageSpies, RSpec/ExampleLength, Layout/LineLength,
+# rubocop:enable RSpec/VerifiedDoubles, Rspec/MessageSpies, RSpec/ExampleLength, Layout/LineLength, Lint/Syntax
