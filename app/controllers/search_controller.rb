@@ -35,7 +35,7 @@ class SearchController < ApplicationController
     if response.code == '200'
       result = JSON.parse(response.body)
       puts "API Result: #{result}"
-      @representatives = CampaignFinance.propublica_api_to_representatives(result, category)
+      @representatives = CampaignFinance.propublica_api_to_representatives(result, cycle, category)
     else
       flash[:error] = "Error: help"
       @representatives = []
