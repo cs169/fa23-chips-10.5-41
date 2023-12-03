@@ -7,16 +7,16 @@
             .form-group.row
                 .col-md-4
                     %label.col-form-label
-                        Enter a cycle:
+                        Select a cycle:
                 .col-md-6
-                    = text_field_tag(:cycle, nil, class: 'form-control')
+                    = select_tag(:cycle, options_for_select(@cycles))
 
             .form-group.row
                 .col-md-4
                     %label.col-form-label
-                        Enter a category:
+                        Select a category:
                 .col-md-6
-                    = text_field_tag(:category, nil, class: 'form-control')
+                    = select_tag(:category, options_for_select(@categories.keys))
 
             .actions
                 = submit_tag 'Search', class: 'btn btn-primary'
