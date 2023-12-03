@@ -24,7 +24,7 @@ class CampaignFinance < ApplicationRecord
 
   def self.propublica_api_to_representatives(rep_info, cycle, category)
     reps = []
-    category_key = CATEGORY_MAPPING[category] || category
+    category_key = categories[category] || category
 
     rep_info['results'].each do |rep_stuff|
       name = rep_stuff['name']
