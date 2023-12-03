@@ -36,12 +36,11 @@ class CampaignFinance < ApplicationRecord
   end
   
   def self.find_from_top_twenty(search_params)
+    api_key = '9lcjslvwVjbqtX0KcQQ3W9rFm316caQQ2T89n4xA'
     api_url = "https://api.propublica.org/campaign-finance/v1/#{search_params[:cycle]}/candidates/leaders/#{categories[search_params[:category]]}"
     response = Faraday.get(api_url) do |request|
-      request.headers['X-API-Key'] = '9lcjslvwVjbqtX0KcQQ3W9rFm316caQQ2T89n4xA'
+      request.headers['X-API-Key'] = api_key
     end
-    puts("Hi")
-    puts(response.body)
     JSON.parse(response.body)['results'].map { |result| result['candidate'] }
   end
 
