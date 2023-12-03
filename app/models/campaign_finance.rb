@@ -19,7 +19,7 @@ class CampaignFinance < ApplicationRecord
   end
 
   def self.cycles
-    (2010..2020).to_a
+    (2010..2020).step(2).to_a
   end
 
   def self.propublica_api_to_representatives(rep_info, cycle, category)
