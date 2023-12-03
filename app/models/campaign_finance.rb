@@ -34,7 +34,7 @@ class CampaignFinance < ApplicationRecord
     end
     reps
   end
-  
+
   def self.find_from_top_twenty(search_params)
     api_key = '9lcjslvwVjbqtX0KcQQ3W9rFm316caQQ2T89n4xA'
     api_url = "https://api.propublica.org/campaign-finance/v1/#{search_params[:cycle]}/candidates/leaders/#{categories[search_params[:category]]}"
@@ -43,5 +43,4 @@ class CampaignFinance < ApplicationRecord
     end
     JSON.parse(response.body)['results'].map { |result| result['candidate'] }
   end
-
 end
