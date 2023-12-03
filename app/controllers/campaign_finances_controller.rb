@@ -8,4 +8,8 @@ class CampaignFinancesController < ApplicationController
   def to_param
     id.to_s
   end
+
+  def search
+    @campaign_finance = CampaignFinance.find(params[:id])
+  end
 end
