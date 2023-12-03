@@ -5,8 +5,8 @@ Background: On the campaign finances page
   Then I should see "Search for a Cycle"
 
 Scenario: Search for a specific cycles category
-  When I fill in "cycle" with "2020"
-  And I fill in "category" with "candidate-loan"
+  When I select "2020" from "cycle"
+  And I select "candidate-loan" from "category"
   And I press "Search"
   Then the table should have 20 rows
   And I should see "BEHRMAN, DAN TAXATION IS THEFT"
