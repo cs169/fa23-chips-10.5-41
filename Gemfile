@@ -31,6 +31,10 @@ gem 'haml-rails'
 # Google Civic Client
 gem 'google-api-client', '~> 0.34'
 
+# Bootstrap for styling
+gem 'bootstrap'
+gem 'sassc-rails'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

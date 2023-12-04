@@ -1,0 +1,10 @@
+@import 'bootstrap';
+
+.navbar {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.container {
+  margin-top: 20px;
+}
