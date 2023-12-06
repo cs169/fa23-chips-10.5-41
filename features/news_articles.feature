@@ -16,5 +16,6 @@ Scenario: Add news items
   And I fill in "Link" with "https://www.politico.com/news/2023/11/27/hannity-desantis-newsom-debate-00128666"
   And I fill in "Description" with "brother wants to debate for real"
   And I select "Ken Calvert" from "Representative"
+  And I select "Free Speech" from "Issue"
   And I press "Save"
   Then I should see "News item was successfully created."
